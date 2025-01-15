@@ -11,7 +11,7 @@
 //- Per stampare la matrice, usa un ciclo annidato.
 import java.util.*;
 
-public class bo {
+public class Main {
  public static void main(String[] args) {
      // Creazione e popolamento della matrice
      int[][] matrix = new int[3][3];
@@ -38,6 +38,14 @@ public class bo {
      // Ricerca del valore massimo
      int max = findMax(matrix);
      System.out.println("Valore massimo: " + max);
+
+     // Conteggio dei valori pari
+     int pari = findPari(matrix);
+     System.out.println("Numeri pari: " + pari);
+
+     // Conteggio dei valori dispari
+     int dispari = findDispari(matrix);
+     System.out.println("Numeri dispari: " + dispari);
  }
 
  public static int calculateSum(int[][] matrix) {
@@ -54,13 +62,42 @@ public class bo {
 
  public static int findMax(int[][] matrix) {
      int max = matrix[0][0];
+     int maxPx = 0;
+     int maxPy = 0;
 
 //COMPLETARE IL CODICE
      for(int cont = 0; cont < matrix.length; cont++) {
     	 for(int c = 0; c < matrix.length; c++) {
-    		 max = Math.max(max, matrix[c][cont]);
+       if(max <= matrix[c][cont]){
+        maxPx = cont + 1;
+        maxPy = c + 1;
+       }
+       max = Math.max(max, matrix[c][cont]);
     	 }
-     }   
+     }
+     System.out.println("Posizione Valore massimo = "+maxPx+", "+maxPy);
      return max;
  }
+ public static int findPari(int[][] matrix) {
+  int pari = 0;
+  for(int cont = 0; cont < matrix.length; cont++) {
+   for(int c = 0; c < matrix.length; c++){
+       if(matrix[c][cont] % 2 == 0){
+        pari++;
+       }
+   }
+  }
+  return pari;
+  }
+ public static int findDispari(int[][] matrix) {
+  int dispari = 0;
+  for(int cont = 0; cont < matrix.length; cont++) {
+   for(int c = 0; c < matrix.length; c++){
+       if(matrix[c][cont] % 2 != 0){
+        dispari++;
+       }
+   }
+  }
+  return dispari;
+  }
 }
